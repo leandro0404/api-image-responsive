@@ -1,0 +1,8 @@
+image:
+  folder:  C:\Program Files\
+  size: 200
+aws:
+  credentials:
+    access-key: ${aws.credentials.access-key}
+    secret-key: ${aws.credentials.secret-key}
+  region: us-east-1

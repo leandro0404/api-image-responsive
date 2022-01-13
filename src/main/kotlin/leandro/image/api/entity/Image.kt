@@ -1,6 +1,6 @@
 package leandro.image.api.entity
 
-import java.util.*
+import java.util.stream.Stream
 
 
 class Image {
@@ -13,29 +13,27 @@ class Image {
     var processed: Boolean = false
 }
 
-class ResizeImage {
-    val width: Int = 0
-    val heigth: Int = 0
-    val path: String = ""
-}
-enum class ImageSizes(val width: Int) {
+class ResizeImage(var path: String, var width : Int , var height : Int , val size : Int)
+
+
+enum class ImageSizesType(width: Int) {
+
+    THUMB_512(512),
     THUMB_256(256),
     THUMB_128(128),
     THUMB_64(64);
 
+    var width: Int = 0
+
     companion object {
-        fun fromWidth(width: Int): Optional<ImageSizes> {
-            return Arrays.stream(values())
-                .filter { bl -> bl.width == width }
-                .findFirst()
-        }
-        fun fromName(name: String): Optional<ImageSizes> {
-            return Arrays.stream(values())
-                .filter { bl -> bl.name == name }
-                .findFirst()
+        fun stream(): Stream<ImageSizesType> {
+            return Stream.of(*values())
         }
     }
-}
 
+    init {
+        this.width = width
+    }
+}
 
 

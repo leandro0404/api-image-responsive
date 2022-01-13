@@ -22,12 +22,8 @@ class UploadImageUseCase
         image.name = request.originalFilename.toString()
         image.extension = request.contentType.toString()
         image.size = request.size
-        image.processed = false
-
-
-        s3Repository.save(image,request);
-
-
+        image.processed = true
+        s3Repository.save(image, request);
 
         return ImageResponse()
     }
